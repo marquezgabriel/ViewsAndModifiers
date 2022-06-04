@@ -7,19 +7,27 @@
 
 import SwiftUI
 
+struct TitleModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.blue)
+    }
+}
+
+
+extension View {
+    func title() -> some View {
+        modifier(TitleModifier())
+        
+    }
+}
+
 struct ContentView: View {
     var body: some View {
         Text("Hello, world!")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.indigo)
             .padding()
-            .background(.red)
-            .padding()
-            .background(.blue)
-            .padding()
-            .background(.green)
-            .padding()
-            .background(.yellow)
+            .title()
     }
 }
 
@@ -27,6 +35,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .preferredColorScheme(.dark)
-            .previewInterfaceOrientation(.portrait)
+            .previewDevice("iPhone 11 Pro")
     }
 }
